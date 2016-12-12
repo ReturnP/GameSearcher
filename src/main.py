@@ -9,7 +9,10 @@ def index():
 @app.route('/search',methods=['POST'])
 def search():
     gameTitle = request.form['searchPath']
+    if gameTitle == "":
+        return index() #TODO: change this to redirect?
     return render_template('search_result.html',gameTitle = gameTitle)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -18,7 +21,7 @@ def login():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return index()
+            return index()#TODO: change this to redirect?
     return render_template('login.html', error=error)
 
 if __name__ == '__main__':
