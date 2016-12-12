@@ -1,8 +1,12 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='stylecss.css')}}">
 <body class="webdesigntuts-workshop">
 	<title>Game Searcher</title>
-	<form action="http://127.0.0.1:5000/search" method="POST">
+	<form action="/search" method="POST">
 		<input type="text" name="searchPath" placeholder="What game are you looking for ?"><br>
 		<input type="submit" value="Search">
+	</form>
+	<br>
+	<form action="/login" method="GET">
+		<button>Login</button>
 	</form>
 </body>
