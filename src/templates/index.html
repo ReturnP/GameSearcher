@@ -3,13 +3,21 @@
 
 <body background="{{ url_for('static',filename='bakgr.png') }}">
 
+	<img src="http://img07.deviantart.net/9a1e/i/2015/327/0/8/undertale__sans_4k_hd_sprite_by_c4dguy995-d9hrp8y.png" height="100" width="100" />
+	<form action="/login" method="GET">
 
+		<button>Login</button>
+	</form>
 	<title>Game Searcher</title>
+
 	<div class="container">
+
 		<h1>Search for a game</h1>
 		<div class="dropdown">
 			<form>
-				<input id="sp" type="text" name="searchPath" placeholder="Search for game" required><br>
+				<img src="https://pbs.twimg.com/media/CZ1hI8CWkAAUM6i.png" height="100" width="100" />
+
+				<input id="sp" type="text" name="searchPath" placeholder="Search for game friend !" required><br>
 			</form>
 			<div class="dropDownContent">
 				<ul id="test">
@@ -18,9 +26,7 @@
 
 		</div>
 		<br>
-		<form action="/login" method="GET">
-			<button>Login</button>
-		</form>
+
 	</div>
 </body>
 <script type="text/javascript" src="{{url_for('static',filename='index.js')}}"></script>
