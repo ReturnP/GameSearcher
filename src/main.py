@@ -17,7 +17,7 @@ def index():
 def search():
 
     gameTitle = request.args.get("title","NONE",type=str)
-    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=10&offset=0&order=rating_count%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
+    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=5&offset=1&order=name&order=rating_count&order=popularity%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
     title = response.json()
     return jsonify(result=title)
 
@@ -31,8 +31,12 @@ def displayGame(gameId):
     
     title = response.json()[0]['name']
     cover = response.json()[0]['cover']['url']
+    summary = response.json()[0]['summary']#TODO: make empty if game has no summary
+    rating = response.json()[0]['rating']
+    rating = rating
+    rating = str(("%.2f" % int(rating)))
 
-    return render_template('search_result.html',title = title,cover=cover)
+    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
