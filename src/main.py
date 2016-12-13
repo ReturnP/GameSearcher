@@ -28,8 +28,6 @@ def displayGame(gameId):
 
     info = response.json()[0]
     title = info['name']
-    cover = info['cover']['url']
-    cover = cover.replace('t_thumb','t_cover_big')
     if 'summary' in info:
         summary = info['summary']
     else:
@@ -39,6 +37,12 @@ def displayGame(gameId):
         rating = str(("%.2f" % int(rating)))
     else:
         rating = 'No rating'
+    if 'cover' in info:
+        cover = info['cover']['url']
+        cover = cover.replace('t_thumb','t_cover_big')
+    else:
+        cover = 'No photo'
+            
 
     return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating)
 
