@@ -1,12 +1,19 @@
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='stylecss.css')}}">
-<body class="webdesigntuts-workshop">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
+
+<body background="{{ url_for('static',filename='8gif.gif') }}">
+
+
 	<title>Game Searcher</title>
+	<div class="container">
+	<h1>Search for a game</h1>
+
 	<form action="/search" method="POST">
-		<input type="text" name="searchPath" placeholder="What game are you looking for ?"><br>
+		<input type="text" name="searchPath" placeholder="Search for game" required><br>
 		<input type="submit" value="Search">
 	</form>
 	<br>
 	<form action="/login" method="GET">
 		<button>Login</button>
 	</form>
+</div>
 </body>

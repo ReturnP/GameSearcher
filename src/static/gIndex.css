@@ -1,0 +1,19 @@
+
+h1{
+  color: white;
+}
+.container{
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+}
+button {
+ background: #292929;
+ background: linear-gradient(#393939, #292929);
+ color: #5f5;
+ outline: none;
+}

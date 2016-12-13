@@ -1,6 +1,9 @@
 <html>
   <head>
     <title>login page</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
+    <body background="{{ url_for('static',filename='8gif.gif') }}">
+
   </head>
   <body>
     <div class="container">
@@ -16,9 +19,10 @@
       {% if error %}
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
+      <form action="/" method="GET">
+        <button>Go back</button>
+      </form>
     </div>
-    <form action="/" method="GET">
-      <button>Go back</button>
-    </form>
+
   </body>
 </html>

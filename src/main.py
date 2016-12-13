@@ -9,8 +9,6 @@ def index():
 @app.route('/search',methods=['POST'])
 def search():
     gameTitle = request.form['searchPath']
-    if gameTitle == "":
-        return index() #TODO: change this to redirect?
     return render_template('search_result.html',gameTitle = gameTitle)
 
 

@@ -1,15 +1,18 @@
 <!doctype html>
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='stylecss.css')}}">
+<head>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
+<body background="{{ url_for('static',filename='gameOver.jpg') }}">
+</head>
 <html>
-   <body>
-
-
+<body>
+<div>
 <h1>Info about {{gameTitle}}</h1>
-
+</div>
 
 <form action="/" method="GET">
-  <button>Go back</button>
+<button style="background-color:powderblue;">Go back</button>
 </form>
+
 </body>
 </html>
