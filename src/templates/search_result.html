@@ -3,19 +3,23 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
-    <body background="{{ url_for('static',filename='souls.gif') }}">
+    <body background="{{ url_for('static',filename='bakgr.png') }}">
 </head>
 <html>
 
 <body>
-    <div>
+    <div class="container">
         <h1>{{title}}</h1>
-        <img src="{{cover}}" height="400" width="400"/>
-    </div>
+        <h1> Rating: {{rating}}</h1>
+        <img src="{{cover}}" height="250" width="250"/>
+        <form action="/" method="GET">
+            <button style="background-color:powderblue;">Go back</button>
+        </form>
+        <text rows="4" cols="50">
+          <h3>{{summary}}</h3>
+        </text>
 
-    <form action="/" method="GET">
-        <button style="background-color:powderblue;">Go back</button>
-    </form>
+    </div>
 
 </body>
 

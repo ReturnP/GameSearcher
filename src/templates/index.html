@@ -1,7 +1,7 @@
 {% extends "layout.html" %} {% block body %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
-<body background="{{ url_for('static',filename='souls.gif') }}">
+<body background="{{ url_for('static',filename='bakgr.png') }}">
 
 
 	<title>Game Searcher</title>
@@ -33,7 +33,9 @@
 				for (i in data.result) {
 					b =  data.result[i]['id']
 					$('#test').append('<li><a href="/displayGame/'+ b + '">' + data.result[i]['name'] + "</a></li>")
+
 				}
+
 
 			});
 			return false;
