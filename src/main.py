@@ -29,6 +29,7 @@ def displayGame(gameId):
     info = response.json()[0]
     title = info['name']
     cover = info['cover']['url']
+    cover = cover.replace('t_thumb','t_cover_big')
     if 'summary' in info:
         summary = info['summary']
     else:
