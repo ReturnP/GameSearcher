@@ -1,3 +1,4 @@
+{% extends "layout.html" %} {% block body %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
 <body background="{{ url_for('static',filename='souls.gif') }}">
@@ -5,15 +6,39 @@
 
 	<title>Game Searcher</title>
 	<div class="container">
-	<h1>Search for a game</h1>
+		<h1>Search for a game</h1>
+		<div class="dropdown">
+			<form>
+				<input id="sp" type="text" name="searchPath" placeholder="Search for game" required><br>
+			</form>
+			<div class="dropDownContent">
+				<ul id="test">
+				</ul>
+			</div>
 
-	<form action="/search" method="POST">
-		<input type="text" name="searchPath" placeholder="Search for game" required><br>
-		<button>Search</button>
-	</form>
-	<br>
-	<form action="/login" method="GET">
-		<button>Login</button>
-	</form>
-</div>
+		</div>
+		<br>
+		<form action="/login" method="GET">
+			<button>Login</button>
+		</form>
+	</div>
 </body>
+<script type="text/javascript">
+	$(function() {
+		var submit_form = function() {
+			$.getJSON($SCRIPT_ROOT + '/search', {
+				title: $('input[name="searchPath"]').val()
+			}, function(data) {
+				$('#test').empty();
+				for (i in data.result) {
+					b =  data.result[i]['id']
+					$('#test').append('<li><a href="/displayGame/'+ b + '">' + data.result[i]['name'] + "</a></li>")
+				}
+
+			});
+			return false;
+		};
+		$('#sp').keyup(submit_form);
+	});
+</script>
+{% endblock %}

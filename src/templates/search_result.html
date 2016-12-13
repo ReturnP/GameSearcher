@@ -1,18 +1,22 @@
 <!doctype html>
-<head>
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
-<body background="{{ url_for('static',filename='souls.gif') }}">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
+
+    <body background="{{ url_for('static',filename='souls.gif') }}">
 </head>
 <html>
-<body>
-<div>
-<h1>Info about {{title}}</h1>
-</div>
 
-<form action="/" method="GET">
-<button style="background-color:powderblue;">Go back</button>
-</form>
+<body>
+    <div>
+        <h1>{{title}}</h1>
+        <img src="{{cover}}" height="400" width="400"/>
+    </div>
+
+    <form action="/" method="GET">
+        <button style="background-color:powderblue;">Go back</button>
+    </form>
 
 </body>
+
 </html>
