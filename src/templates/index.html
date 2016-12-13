@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
 
-<body background="{{ url_for('static',filename='8gif.gif') }}">
+<body background="{{ url_for('static',filename='souls.gif') }}">
 
 
 	<title>Game Searcher</title>
@@ -9,7 +9,7 @@
 
 	<form action="/search" method="POST">
 		<input type="text" name="searchPath" placeholder="Search for game" required><br>
-		<input type="submit" value="Search">
+		<button>Search</button>
 	</form>
 	<br>
 	<form action="/login" method="GET">
