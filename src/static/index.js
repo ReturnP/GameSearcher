@@ -7,11 +7,11 @@ $(document).ready(function() {
             $('#results').empty();
             for (i in data.result) {
                 b = data.result[i]['id']
-                $('#results').append('<li><a href="/displayGame/' + b + '">' + data.result[i]['name'] + "</a></li>")
+                image = '<li><img src="' + data.result[i]['cover']['url'] + '"/>'
+                link = '<a href="/displayGame/' + b + '">' + data.result[i]['name'] + "</a></li>"
+                $('#results').append(image + link)
             }
-            /*for(i = 0; i < 3; i++){
-                $('#test').append("123")
-            }*/
+
         });
         return false;
     };

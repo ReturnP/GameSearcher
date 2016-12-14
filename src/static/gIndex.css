@@ -54,6 +54,8 @@ body {
   color: inherit; 
   text-decoration: none;
   font-size: 12px;
+  display: inline;
+  vertical-align: center;
 }
 
 #results li{
@@ -63,6 +65,12 @@ body {
 }
 #results li:hover{
   background-color: #dddddd;
+}
+#results img {
+  display: inline;
+  width: 45px;
+  height: 45px;
+  margin-right: 5px;
 }
 .container{
   position: absolute;
