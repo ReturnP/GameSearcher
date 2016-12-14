@@ -1,16 +1,7 @@
 {% extends "layout.html" %} {% block body %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
-
-<body background="{{ url_for('static',filename='bakgr.png') }}">
-	<form action="/login" method="GET">
-
-		<button>Login</button>
-	</form>
-	<title>Game Searcher</title>
-
 	<div class="container">
 
-		<h1>Search for a game</h1>
+		<h3>What game are you searching for?</h3>
 		<div class="dropdown">
 			<form>
 
@@ -25,6 +16,4 @@
 		<br>
 
 	</div>
-</body>
-<script type="text/javascript" src="{{url_for('static',filename='index.js')}}"></script>
 {% endblock %}
