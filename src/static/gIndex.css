@@ -1,17 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee|Open+Sans');
+
 h1{
-  color:white;
+  color: #F7CE3E;
+  font-family: 'Bungee', cursive;
+  text-align: center;
 }
 h3{
-  color:white;
+  color:#1A2930;
 }
 h2{
   color:white;
 }
 body {
-  font-family: 'Cabin';
-
+  font-family: 'Open Sans', sans-serif;
+  background-color: white;
+  padding: 0;
+}
+.banner{
+  position: absolute;
+  height: 100px;
+  background-color: #1A2930;
+  top: 0;
+  left:0;
+  width: 100%;
+  padding-bottom: 20px;
+}
+#results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border: 2px solid #dddddd;
+  border-top: 0;
+  border-bottom: 0;
+  width: 100%;
+}
+#results a { 
+  color: inherit; 
+  text-decoration: none;
+  font-size: 12px;
 }
 
+#results li{
+  color: black;
+  background-color: white;
+  padding: 10px;
+}
+#results li:hover{
+  background-color: #dddddd;
+}
 .container{
   position: absolute;
   width: 300px;
@@ -20,6 +56,11 @@ body {
   top: 50%;
   left: 50%;
   margin: -100px 0 0 -150px;
+}
+#sp {
+  padding: 10px 0px 10px 5px;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
 }
 button {
  background: #292929;

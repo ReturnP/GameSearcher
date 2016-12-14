@@ -1,13 +1,4 @@
-<!doctype html>
-
-<head>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='gIndex.css')}}">
-
-    <body background="{{ url_for('static',filename='bakgr.png') }}">
-</head>
-<html>
-
-<body>
+{% extends "layout.html" %} {% block body %}
     <div class="container">
         <h1>{{title}}</h1>
         <h1> Rating: {{rating}}</h1>
@@ -16,11 +7,8 @@
             <button style="background-color:powderblue;">Go back</button>
         </form>
         <text rows="4" cols="50">
-          <h3>{{summary}}</h3>
+          <p>{{summary}}</p>
         </text>
 
     </div>
-
-</body>
-
-</html>
+{% endblock %}

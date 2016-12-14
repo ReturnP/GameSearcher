@@ -5,6 +5,7 @@ from functools import wraps
 
 app = Flask(__name__)
 
+
 app.secret_key = "returnp" #TODO put in config file
 
 
@@ -18,6 +19,9 @@ def login_req(s):
         else:
             return redirect(url_for('login'))
     return wrap
+
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+
     
 with open('config.json') as jData:
     apiKey = json.load(jData)['ApiKey']
@@ -30,7 +34,9 @@ def index():
 @app.route('/search')
 def search():
     gameTitle = request.args.get("title","NONE",type=str)
-    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=5&offset=1&order=name&order=rating_count&order=popularity%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
+    gameTitle = gameTitle.replace(' ', '')
+    gameTitle = ''.join([i for i in gameTitle if not i.isdigit()])
+    response = requests.get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=10&offset=0&order=rating%3Adesc&search={}'.format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
     title = response.json()
     return jsonify(result=title)
 
@@ -82,4 +88,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port = 5002)
