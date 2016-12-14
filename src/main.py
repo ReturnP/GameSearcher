@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,url_for, request,jsonify
 import requests
 import json
 app = Flask(__name__)
-app.config.update(TEMPLATES_AUTO_RELOAD=True)
+app.config["TEMPLATES_AUTO_RELOAD"] = True
     
 with open('config.json') as jData:
     apiKey = json.load(jData)['ApiKey']
@@ -14,7 +14,7 @@ def index():
 @app.route('/search')
 def search():
     gameTitle = request.args.get("title","NONE",type=str)
-    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=5&offset=1&order=name&order=rating_count&order=popularity%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
+    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=5&offset=1&order=release_dates.date%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
     title = response.json()
     return jsonify(result=title)
 
@@ -59,4 +59,4 @@ def login():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port = 5002)
