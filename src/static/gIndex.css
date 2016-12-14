@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee|Open+Sans');
 
 #siteTitle{
-  color: #F7CE3E;
   font-family: 'Bungee', cursive;
   width: 100%;
   height: 100%;
@@ -17,7 +16,11 @@
             user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
-#siteTitle:hover{
+#siteTitle a{
+  color: #F7CE3E;
+  text-decoration: none;
+}
+#siteTitle a:hover{
     color: #D5AC1C;
     cursor: pointer;
 }
