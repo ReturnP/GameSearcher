@@ -1,14 +1,30 @@
-from flask import Flask,render_template,request,url_for, request,jsonify
+from flask import Flask,render_template,request,url_for, request,jsonify,redirect,session,flash
 import requests
 import json
+from functools import wraps
+
 app = Flask(__name__)
+
+app.secret_key = "returnp" #TODO put in config file
+
+
+
 app.config.update(TEMPLATES_AUTO_RELOAD=True)
+def login_req(s):
+    @wraps(s)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return s(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return wrap
     
 with open('config.json') as jData:
     apiKey = json.load(jData)['ApiKey']
 
 @app.route('/')
 def index():
+    
     return render_template('index.html')
 
 @app.route('/search')
@@ -53,10 +69,17 @@ def login():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return index()#TODO: change this to redirect?
+            session['logged_in'] = True
+            flash("Að vera innskráður fyllir þig með ákvörðun")
+            return redirect(url_for('index'))#TODO: change this to redirect?
     return render_template('login.html', error=error)
 
-
+@app.route('/logout')
+@login_req
+def logout():
+    session.pop('logged_in',None)
+    flash("Logged out!")
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
