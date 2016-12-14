@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee|Open+Sans');
 
-h1{
+#siteTitle{
   color: #F7CE3E;
   font-family: 'Bungee', cursive;
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
   text-align: center;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+#siteTitle:hover{
+    color: #D5AC1C;
+    cursor: pointer;
 }
 h3{
   color:#1A2930;
@@ -18,12 +34,12 @@ body {
 }
 .banner{
   position: absolute;
-  height: 100px;
+  height: 10%;
   background-color: #1A2930;
   top: 0;
   left:0;
   width: 100%;
-  padding-bottom: 20px;
+  display: table;
 }
 #results {
   list-style-type: none;
