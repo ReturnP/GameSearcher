@@ -14,7 +14,9 @@ def index():
 @app.route('/search')
 def search():
     gameTitle = request.args.get("title","NONE",type=str)
-    response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=5&offset=1&order=release_dates.date%3Adesc&search={}".format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
+    gameTitle = gameTitle.replace(' ', '')
+    gameTitle = ''.join([i for i in gameTitle if not i.isdigit()])
+    response = requests.get('https://igdbcom-internet-game-database-v1.p.mashape.com/games/?fields=name&limit=10&offset=0&order=rating%3Adesc&search={}'.format(gameTitle),headers={"X-Mashape-Key": apiKey,"Accept": "application/json"})
     title = response.json()
     return jsonify(result=title)
 

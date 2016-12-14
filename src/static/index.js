@@ -18,6 +18,6 @@ $(document).ready(function() {
     var timer
     $('#sp').keyup(function(){
         clearTimeout(timer);
-        timer = setTimeout(function(){submit_form()}, 1000);
+        timer = setTimeout(function(){submit_form()}, 500);
     });
 });
