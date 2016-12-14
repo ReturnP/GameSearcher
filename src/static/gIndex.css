@@ -22,6 +22,7 @@
     cursor: pointer;
 }
 h3{
+  text-align: center;
   color:#1A2930;
 }
 h2{
@@ -55,13 +56,18 @@ body {
   text-decoration: none;
   font-size: 12px;
   display: inline;
-  vertical-align: center;
+}
+#results a:hover {
+  text-decoration: underline;
 }
 
 #results li{
   color: black;
   background-color: white;
-  padding: 10px;
+  display: block;
+  height: 70px;
+  line-height: 70px;
+  overflow: hidden;
 }
 #results li:hover{
   background-color: #dddddd;
@@ -70,16 +76,17 @@ body {
   display: inline;
   width: 45px;
   height: 45px;
-  margin-right: 5px;
+  vertical-align: middle;
+  margin: 0 5px;
 }
 .container{
   position: absolute;
-  width: 300px;
+  width: 400px;
   height: 200px;
   z-index: 15;
-  top: 50%;
+  top: 35%;
   left: 50%;
-  margin: -100px 0 0 -150px;
+  margin: -100px 0 0 -200px;
 }
 #sp {
   padding: 10px 0px 10px 5px;
