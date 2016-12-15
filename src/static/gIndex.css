@@ -2,11 +2,10 @@
 
 #siteTitle{
   font-family: 'Bungee', cursive;
-  width: 100%;
   height: 100%;
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  padding-left: 50px;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -99,9 +98,17 @@ body {
   font-family: 'Open Sans', sans-serif;
   width: 100%;
 }
-button {
- background: #292929;
- background: linear-gradient(#393939, #292929);
- color: #5f5;
- outline: none;
+
+.bannerLogin {
+  height: 100%;
+  text-align: right;
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 50px;
+}
+.bannerLogin button{
+  color: #F7CE3E;
+  background-color: #1A2930;
+  font-size: 16px;
+  font-family: 'Bungee', cursive;
 }
