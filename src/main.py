@@ -1,13 +1,14 @@
-from flask import Flask,render_template,request,url_for, request,jsonify,redirect,session,flash
+from flask import Flask,render_template,g,request,url_for, request,jsonify,redirect,session,flash
 import requests
 import json
+import sqlite3
 from functools import wraps
 
 app = Flask(__name__)
 
 
 app.secret_key = "returnp" #TODO put in config file
-
+app.database = "users.db"
 
 
 app.config.update(TEMPLATES_AUTO_RELOAD=True)
@@ -28,7 +29,6 @@ with open('config.json') as jData:
 
 @app.route('/')
 def index():
-    
     return render_template('index.html')
 
 @app.route('/search')
@@ -72,20 +72,54 @@ def displayGame(gameId):
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
-        else:
+        user = str(request.form['username'])
+        password = str(request.form['password'])
+        g.db = connect_db()
+        allUsers = g.db.execute('Select * from users')
+        validUser = [row[0]for row in allUsers.fetchall()]
+        if user in validUser:
+            g.db.close()
             session['logged_in'] = True
-            flash("Að vera innskráður fyllir þig með ákvörðun")
-            return redirect(url_for('index'))#TODO: change this to redirect?
+            return redirect(url_for('index'))
+        else:
+            error = 'Invalid username or password'
     return render_template('login.html', error=error)
 
 @app.route('/logout')
 @login_req
 def logout():
-    session.pop('logged_in',None)
-    flash("Logged out!")
-    return redirect(url_for('index'))
+    session.clear()
+    return render_template('index.html')
+
+@app.route('/register',methods=['GET', 'POST'])
+def register():
+    error = None
+
+    if request.method == 'POST':
+        user = str(request.form['username'])
+        password = str(request.form['password'])
+
+        #Establish a connection the the database and save user info there, if user is not taken
+        g.db = connect_db()
+        allUsers = g.db.execute('Select * from users')
+        validUser = [row[0]for row in allUsers.fetchall()]
+        
+        if user not in validUser:
+            curr = g.db.execute('INSERT INTO users VALUES("'+user+'","'+password+'")')
+            g.db.commit()
+            g.db.close()
+            session['logged_in'] = True
+            return redirect(url_for('index'))
+        else:
+            error = 'User name is taken. Please try again.'
+    return render_template('register.html',error = error)
+
+
+
+
+def connect_db():
+    return sqlite3.connect(app.database)
+
 
 if __name__ == '__main__':
     app.run()
