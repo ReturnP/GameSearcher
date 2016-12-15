@@ -19,7 +19,11 @@
         <p class="error"><strong>Error:</strong> {{ error }}
       {% endif %}
       <form action="/" method="GET">
-        <button>Go back</button>
+        <button>Home</button>
+      </form>
+      <p> Need an account? Register here!</p>
+      <form action="/register" method="GET">
+        <button>Register</button>
       </form>
     </div>
 {% endblock %}

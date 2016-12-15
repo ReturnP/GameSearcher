@@ -11,6 +11,9 @@ app.secret_key = "returnp" #TODO put in config file
 app.database = "users.db"
 
 
+def connect_db():
+    return sqlite3.connect(app.database)
+
 app.config.update(TEMPLATES_AUTO_RELOAD=True)
 def login_req(s):
     @wraps(s)
@@ -76,8 +79,9 @@ def login():
         password = str(request.form['password'])
         g.db = connect_db()
         allUsers = g.db.execute('Select * from users')
-        validUser = [row[0]for row in allUsers.fetchall()]
-        if user in validUser:
+        validUser = [(row[0], row[1]) for row in allUsers.fetchall()]
+        
+        if (user,password) in validUser :
             g.db.close()
             session['logged_in'] = True
             return redirect(url_for('index'))
@@ -117,8 +121,6 @@ def register():
 
 
 
-def connect_db():
-    return sqlite3.connect(app.database)
 
 
 if __name__ == '__main__':
