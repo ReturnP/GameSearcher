@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee|Open+Sans');
 
 #siteTitle{
-  color: #F7CE3E;
   font-family: 'Bungee', cursive;
   width: 100%;
   height: 100%;
@@ -17,11 +16,16 @@
             user-select: none; /* Non-prefixed version, currently
                                   not supported by any browser */
 }
-#siteTitle:hover{
+#siteTitle a{
+  color: #F7CE3E;
+  text-decoration: none;
+}
+#siteTitle a:hover{
     color: #D5AC1C;
     cursor: pointer;
 }
 h3{
+  text-align: center;
   color:#1A2930;
 }
 h2{
@@ -29,7 +33,7 @@ h2{
 }
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: white;
+  background-color: #F4F4F4;
   padding: 0;
 }
 .banner{
@@ -57,12 +61,19 @@ body {
   display: inline;
   margin-bottom: 5px;
 }
+#results a:hover {
+  text-decoration: underline;
+}
 
 #results li{
   color: black;
   background-color: white;
 
   padding: 0.5em 1em;
+  display: block;
+  height: 70px;
+  line-height: 70px;
+  overflow: hidden;
 }
 #results li:hover{
   background-color: #dddddd;
@@ -71,16 +82,17 @@ body {
   display: inline;
   width: 45px;
   height: 45px;
-  margin-right: 5px;
+  vertical-align: middle;
+  margin: 0 5px;
 }
 .container{
   position: absolute;
-  width: 300px;
+  width: 400px;
   height: 200px;
   z-index: 15;
-  top: 50%;
+  top: 35%;
   left: 50%;
-  margin: -100px 0 0 -150px;
+  margin: -100px 0 0 -200px;
 }
 #sp {
   padding: 10px 0px 10px 5px;
