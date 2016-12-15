@@ -59,6 +59,7 @@ body {
   text-decoration: none;
   font-size: 12px;
   display: inline;
+  margin-bottom: 5px;
 }
 #results a:hover {
   text-decoration: underline;
@@ -67,6 +68,8 @@ body {
 #results li{
   color: black;
   background-color: white;
+
+  padding: 0.5em 1em;
   display: block;
   height: 70px;
   line-height: 70px;

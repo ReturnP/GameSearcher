@@ -1,6 +1,10 @@
 {% extends "layout.html" %} {% block body %}
-	<div class="container">
 
+	<div class="container">
+		{% for post in posts %}
+		{{post.title}}
+		{{post.description}}
+		{% endfor %}
 		<h3>What game are you searching for?</h3>
 		<div class="dropdown">
 			<form>
@@ -14,6 +18,15 @@
 
 		</div>
 		<br>
+		<form action="/login" method="GET">
+        <button>Login</button>
+      </form>
+      <form action="/register" method="GET">
+        <button>Register</button>
+      </form>
+      <form action="/logout" method="GET">
+        <button>Logout</button>
+      </form>
 
 	</div>
 {% endblock %}
