@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+
 <title>Game Searcher</title>
 
 <script type="text/javascript"
@@ -13,6 +14,16 @@
 <body>
 	<div class="banner">
 		<h1 id= "siteTitle"><a href="/">Game Searcher</a></h1>
+		{% if not session %}
+		<form class="bannerLogin" action="/login" method="GET">
+        <button>Login</button>
+         </form>
+      {% endif %}
+      {% if session %}
+             <form class="bannerLogin" action="/logout" method="GET">
+        	<button>Logout</button>
+      	</form>
+      {% endif %}
 	</div>
 {% block body %}{% endblock %}
 </body>
