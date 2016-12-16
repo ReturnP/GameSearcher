@@ -3,6 +3,7 @@ import requests
 import json
 import sqlite3
 from functools import wraps
+import random
 
 app = Flask(__name__)
 
@@ -32,7 +33,10 @@ with open('config.json') as jData:
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with open("static/img_links.txt") as f:
+        img_list = f.readlines()
+    img_url = random.choice(img_list)
+    return render_template('index.html', img_url = img_url)
 
 @app.route('/search')
 def search():

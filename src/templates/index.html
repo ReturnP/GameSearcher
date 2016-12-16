@@ -1,6 +1,7 @@
 {% extends "layout.html" %} {% block body %}
-
+	<body background="{{img_url}}">
 	<div class="container">
+
 		{% for post in posts %}
 		{{post.title}}
 		{{post.description}}
