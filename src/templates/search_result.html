@@ -1,14 +1,12 @@
 {% extends "layout.html" %} {% block body %}
-    <div class="container">
-        <h1>{{title}}</h1>
-        <h1> Rating: {{rating}}</h1>
-        <img src="{{cover}}" height="250" width="250"/>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='search-results.css')}}">
+    <div class="results-container">
+        <div class="results-container-title">
+            <img src="{{cover}}"/>
+            <h3>{{title}}</h3>
+        </div>
         <form action="/" method="GET">
             <button style="background-color:powderblue;">Go back</button>
         </form>
-        <text rows="4" cols="50">
-          <p>{{summary}}</p>
-        </text>
-
     </div>
 {% endblock %}
