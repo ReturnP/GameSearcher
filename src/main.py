@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 
 app.secret_key = "returnp" #TODO put in config file
-app.database = "users.db"
+app.database = "gameSearch.db"
 
 
 def connect_db():
@@ -50,6 +50,8 @@ def search():
 
 @app.route('/displayGame/<gameId>',methods=['GET','POST'])
 def displayGame(gameId):
+
+  
     response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/games/{}?fields=*".format(gameId), headers={
     "X-Mashape-Key": apiKey,
     "Accept": "application/json"
@@ -57,6 +59,7 @@ def displayGame(gameId):
 
     info = response.json()[0]
     title = info['name']
+    comment = None
     if 'summary' in info:
         summary = info['summary']
     else:
@@ -71,9 +74,14 @@ def displayGame(gameId):
         cover = cover.replace('t_thumb','t_cover_big')
     else:
         cover = 'No photo'
-            
+    if request.method == 'POST':
+        comment = str(request.form['comment'])
+        g.db = connect_db()
+        g.db.execute('INSERT INTO comments VALUES("'+comment+'","'+session['username']+'","'+gameId+'")')
+        g.db.commit()
+        g.db.close()
 
-    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating)
+    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating,comment = comment,gameId = gameId)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -88,6 +96,7 @@ def login():
         if (user,password) in validUser :
             g.db.close()
             session['logged_in'] = True
+            session['username'] = user
             return redirect(url_for('index'))
         else:
             error = 'Invalid username or password'
@@ -113,10 +122,11 @@ def register():
         validUser = [row[0]for row in allUsers.fetchall()]
         
         if user not in validUser:
-            curr = g.db.execute('INSERT INTO users VALUES("'+user+'","'+password+'")')
+            g.db.execute('INSERT INTO users VALUES("'+user+'","'+password+'")')
             g.db.commit()
             g.db.close()
             session['logged_in'] = True
+            session['username'] = user
             return redirect(url_for('index'))
         else:
             error = 'User name is taken. Please try again.'

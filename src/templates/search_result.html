@@ -4,9 +4,19 @@
         <div class="results-container-title">
             <img src="{{cover}}"/>
             <h3>{{title}}</h3>
+            <h1>{{comment}}</h1>
+
         </div>
         <form action="/" method="GET">
             <button style="background-color:powderblue;">Go back</button>
         </form>
+        <form action="{{gameId}}" method='post'>
+          Comment:<br />
+    <textarea name='comment' id='comment'></textarea><br />
+
+    <input type='hidden' name='articleid' value='?' />
+
+     <input type='submit' value='Submit' />  
+</form>
     </div>
 {% endblock %}
