@@ -1,22 +1,31 @@
 {% extends "layout.html" %} {% block body %}
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='search-results.css')}}">
-    <div class="results-container">
-        <div class="results-container-title">
-            <img src="{{cover}}"/>
-            <h3>{{title}}</h3>
-            <h1>{{comment}}</h1>
-
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='search-results.css')}}">
+    <div id="results-container" class="results-container">
+        <div id="background">
         </div>
+        <center><img src="{{cover}}"/></center>
+        <h3>{{title}}</h3>
+        <p>Developer</p>
         <form action="/" method="GET">
             <button style="background-color:powderblue;">Go back</button>
         </form>
         <form action="{{gameId}}" method='post'>
-          Comment:<br />
-    <textarea name='comment' id='comment'></textarea><br />
+            Comment:<br />
+            <h1>{{comment}}</h1>
+            <textarea name='comment' id='comment'></textarea><br />
 
-    <input type='hidden' name='articleid' value='?' />
+            <input type='hidden' name='articleid' value='?' />
 
-     <input type='submit' value='Submit' />  
-</form>
+            <input type='submit' value='Submit' />  
+        </form>
     </div>
+    <p id="bimg">{{screenshot}}</p>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var l = document.getElementById("bimg").innerHTML;
+        console.log(l);
+        var obj = document.getElementById("background");
+        obj.style.backgroundImage = "url(" + l + ")"
+    });
+    </script>
 {% endblock %}

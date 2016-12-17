@@ -74,6 +74,11 @@ def displayGame(gameId):
         cover = cover.replace('t_thumb','t_cover_big')
     else:
         cover = 'No photo'
+    if 'screenshots' in info:
+        screenshot = info['screenshots'][0]['url']
+        screenshot = screenshot.replace('t_thumb','t_screenshot_big')
+    else:
+        screenshot = 'No photo'
     if request.method == 'POST':
         comment = str(request.form['comment'])
         g.db = connect_db()
@@ -81,7 +86,7 @@ def displayGame(gameId):
         g.db.commit()
         g.db.close()
 
-    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating,comment = comment,gameId = gameId)
+    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating,comment = comment,gameId = gameId, screenshot = screenshot)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

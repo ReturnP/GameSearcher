@@ -20,4 +20,10 @@ $(document).ready(function() {
         clearTimeout(timer);
         timer = setTimeout(function(){submit_form()}, 500);
     });
+    $('#sp').keydown(function(e){
+        if(e.which === 13){
+            e.preventDefault();
+        }
+    });
+
 });
