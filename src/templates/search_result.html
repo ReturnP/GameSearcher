@@ -13,6 +13,7 @@
             <p id="summary">{{summary}}</p>
             <h4>Comments:</h4>
             <ul id="commentSection">
+                
     {% for comment in comments %}
     <li>
         <p id="comment-user">{{comment[1]}}</p> 
@@ -21,14 +22,13 @@
     {% endfor %}
     </ul> 
 
-            {% if not session %}
-            <h4>Log in to comment</h4>
+    {% if not session %}
+        <h4>Log in to comment</h4>
         <form action="/login" method="GET">
         <button>Login</button>
-         </form>
-      {% endif %}
-            <form action="{{gameId}}" method='post'>
-
+        </form>
+    {% endif %}
+        <form action="{{gameId}}" method='post'>
           {% if session %}
             <textarea name='comment' id='comment'></textarea><br />
 

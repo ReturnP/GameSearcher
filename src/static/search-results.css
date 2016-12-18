@@ -48,7 +48,7 @@ html, body
   font-size: 20px;
   font-weight: bolder;
   text-align: left;
-  color:skyblue;
+  color:#154360;
   margin-bottom: 0;
 }
 #comment-comment{
@@ -56,8 +56,14 @@ html, body
   font-size:16px;
   color: black;
   text-align: left;
+  resize: none;
 }
 #summary{
   text-align: left;
   font-style: italic;
+}
+#comment {
+  resize: none;
+  width: 300px;
+  height: 150px;
 }

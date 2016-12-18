@@ -19,8 +19,10 @@
         <button>Login</button>
          </form>
       {% endif %}
+      
       {% if session %}
-             <form class="bannerLogin" action="/logout" method="GET">
+      <h3 id="userDisp">User: {{session['username']}}</h3>
+        <form class="bannerLogin" action="/logout" method="GET">
         	<button>Logout</button>
       	</form>
       {% endif %}

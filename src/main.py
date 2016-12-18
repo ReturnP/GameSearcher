@@ -8,7 +8,7 @@ import random
 app = Flask(__name__)
 
 
-app.secret_key = "returnp" #TODO put in config file
+app.secret_key = "returnp"
 app.database = "gameSearch.db"
 
 
@@ -139,7 +139,6 @@ def register():
         user = str(request.form['username'])
         password = str(request.form['password'])
 
-        #Establish a connection the the database and save user info there, if user is not taken
         g.db = connect_db()
         allUsers = g.db.execute('Select * from users')
         validUser = [row[0]for row in allUsers.fetchall()]
