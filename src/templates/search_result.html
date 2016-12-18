@@ -1,25 +1,44 @@
+  
 {% extends "layout.html" %} {% block body %}
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='search-results.css')}}">
+
     <div id="results-container" class="results-container">
         <div id="background">
         </div>
         <center><img src="{{cover}}"/></center>
         <h3>{{title}}</h3>
-        <p>Developer</p>
-        <form action="/" method="GET">
-            <button style="background-color:powderblue;">Go back</button>
-        </form>
-        <form action="{{gameId}}" method='post'>
-            Comment:<br />
-            <h1>{{comment}}</h1>
+        <p>{{dev}}</p>
+     
+            <h4>Summary:</h4>
+            <p id="summary">{{summary}}</p>
+            <h4>Comments:</h4>
+            <ul id="commentSection">
+    {% for comment in comments %}
+    <li>
+        <p id="comment-user">{{comment[1]}}</p> 
+        <p id="comment-comment">{{comment[0]}}</p>
+    </li>  
+    {% endfor %}
+    </ul> 
+
+            {% if not session %}
+            <h4>Log in to comment</h4>
+        <form action="/login" method="GET">
+        <button>Login</button>
+         </form>
+      {% endif %}
+            <form action="{{gameId}}" method='post'>
+
+          {% if session %}
             <textarea name='comment' id='comment'></textarea><br />
 
             <input type='hidden' name='articleid' value='?' />
 
             <input type='submit' value='Submit' />  
         </form>
+      {% endif %}        
+        <p id="bimg">{{screenshot}}</p>
     </div>
-    <p id="bimg">{{screenshot}}</p>
     <script type="text/javascript">
     $(document).ready(function() {
         var l = document.getElementById("bimg").innerHTML;
@@ -28,4 +47,5 @@
         obj.style.backgroundImage = "url(" + l + ")"
     });
     </script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='search-results.css')}}">
 {% endblock %}

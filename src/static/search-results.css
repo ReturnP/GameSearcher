@@ -1,7 +1,6 @@
 .results-container{
   position: absolute;
   width: 80%;
-  height: 100%;
   padding-top: 10%;
   margin-left: 10%;
   margin-right: 10%;
@@ -16,6 +15,11 @@ img {
 h3 {
   color: black;
 }
+h4{
+  font-weight: bold;
+  color: black;
+  margin-top: 50px;
+}
 .results-container p{
   text-align: center;
 }
@@ -24,7 +28,7 @@ h3 {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height:45%;
+    height:350px;
     z-index: -2;
     padding: 0;
     margin: 0;
@@ -32,4 +36,28 @@ h3 {
     top:0;
     filter: blur(5px);
     overflow: hidden;
+}
+#bimg {
+  display: none;
+}
+html, body
+{
+    height: 100%;
+}
+#comment-user{
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: left;
+  color:skyblue;
+  margin-bottom: 0;
+}
+#comment-comment{
+  margin-top: 0;
+  font-size:16px;
+  color: black;
+  text-align: left;
+}
+#summary{
+  text-align: left;
+  font-style: italic;
 }

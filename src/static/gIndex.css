@@ -113,3 +113,9 @@ body {
   font-size: 16px;
   font-family: 'Bungee', cursive;
 }
+#commentSection {
+  list-style-type: none;
+}
+h4 {
+  margin-top: 5px;
+}

@@ -79,14 +79,31 @@ def displayGame(gameId):
         screenshot = screenshot.replace('t_thumb','t_screenshot_big')
     else:
         screenshot = 'No photo'
+    if 'developers' in info:
+        devel = info['developers']
+        response = requests.get("https://igdbcom-internet-game-database-v1.p.mashape.com/companies/{}?fields=*&limit=10&offset=0".format(devel[0]), headers={
+    "X-Mashape-Key": apiKey,
+    "Accept": "application/json"
+    })
+        dev = response.json()[0]['name']
+    else:
+        dev = 'Undetermined'
+
     if request.method == 'POST':
         comment = str(request.form['comment'])
         g.db = connect_db()
         g.db.execute('INSERT INTO comments VALUES("'+comment+'","'+session['username']+'","'+gameId+'")')
         g.db.commit()
         g.db.close()
+        return redirect('/displayGame/{}'.format(gameId),code=302)
 
-    return render_template('search_result.html',title = title,cover=cover,summary = summary,rating = rating,comment = comment,gameId = gameId, screenshot = screenshot)
+    g.db = connect_db()
+    comm = g.db.execute('Select * from comments where gameId =='+gameId)
+    comments =comm.fetchall()
+
+    g.db.close()
+
+    return render_template('search_result.html',dev = dev,comments = comments,title = title,cover=cover,summary = summary,rating = rating,comment = comment,gameId = gameId, screenshot = screenshot)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -104,6 +121,7 @@ def login():
             session['username'] = user
             return redirect(url_for('index'))
         else:
+            g.db.close()
             error = 'Invalid username or password'
     return render_template('login.html', error=error)
 
